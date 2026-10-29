@@ -28,4 +28,12 @@ class Controller:
         self._view.update()
 
     # Altre Funzioni Event Handler
-    # TODO
+    def show_full_instrument_list(self):
+        self._view.lista_strumenti.controls = [ft.Text(value=str(strumento), text_align=ft.TextAlign.CENTER) for strumento in
+                                                self._model.get_strumenti()]
+        self._view.lista_strumenti.update()
+
+    def show_filtered_instrument_list(self, value):
+        self._view.lista_strumenti_ricerca.controls = [ft.Text(value=str(strumento), text_align=ft.TextAlign.CENTER) for strumento in
+                                               self._model.cerca_strumenti_per_tipo(value)]
+        self._view.lista_strumenti_ricerca.update()

@@ -63,7 +63,8 @@ class View:
         pulsante_conferma_responsabile = ft.Button("Conferma", on_click=self.controller.conferma_responsabile)
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
-        # TODO
+        self.pulsante_mostra = ft.Button("Mostra", on_click= lambda e :self.controller.show_full_instrument_list())
+        self.pulsante_cerca = ft.Button("Cerca", on_click = lambda e :self.controller.show_filtered_instrument_list(self.input_tipo_strumento.value))
 
         # --- LAYOUT ---
         self.page.add(
@@ -82,10 +83,17 @@ class View:
             ft.Divider(),
 
             # Sezione 3
-            # TODO
+            #Un contenitore ListView da popolare con gli strumenti che vengono letti dal database.
+            ft.Row(spacing=100,
+                   controls=[ft.Text("Strumenti", size=20), self.pulsante_mostra],
+                   alignment=ft.MainAxisAlignment.CENTER),
+            self.lista_strumenti,
+            ft.Divider(),
 
             # Sezione 4
-            # TODO
+            ft.Text("Cerca Strumenti per Tipo", size=20),
+            ft.Row(spacing=100, controls=[self.input_tipo_strumento, self.pulsante_cerca], alignment=ft.MainAxisAlignment.CENTER),
+            self.lista_strumenti_ricerca,
         )
 
     def cambia_tema(self, e):
